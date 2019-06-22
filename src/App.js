@@ -13,15 +13,15 @@ class App extends React.Component {
       },
       {
         id: 2,
-        firstName: 'Erika',
-        lastName: 'Jensen', 
+        firstName: 'James',
+        lastName: 'Jamison', 
         numOfDependants: 4,
         payCheck: 2000
       },
       {
         id: 3,
-        firstName: 'Kiersten',
-        lastName: 'Moe', 
+        firstName: 'Indiana',
+        lastName: 'Jones', 
         numOfDependants: 0,
         payCheck: 2000
       }
@@ -41,7 +41,7 @@ class App extends React.Component {
   }
 
   deleteEmployee = (id) => {
-    
+
   }
 
   render()

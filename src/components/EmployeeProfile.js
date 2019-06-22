@@ -13,6 +13,9 @@ class EmployeeProfile extends React.Component {
             <td>{ firstName + ' ' + lastName }</td>
             <td>{ numOfDependants }</td>
             <td>{ payCheck }</td>
+            <td>Test</td>
+            <td>Test</td>
+            <td>Test</td>
             <td><button onClick={this.props.deleteEmployee.bind(this, id)}>delete</button></td>
         </tr>
    ) 
@@ -21,7 +24,7 @@ class EmployeeProfile extends React.Component {
 
 //PropTypes
 EmployeeProfile.propTypes = {
-    employees: PropTypes.object.isRequired
+    employee: PropTypes.object.isRequired
   }
 
 export default EmployeeProfile;

@@ -1,26 +1,62 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Employees from './components/Employees';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    employees: [
+      {
+        id: 1,
+        firstName: 'Sarah',
+        lastName: 'VanDuine', 
+        numOfDependants: 2,
+        payCheck: 2000
+      },
+      {
+        id: 2,
+        firstName: 'Erika',
+        lastName: 'Jensen', 
+        numOfDependants: 4,
+        payCheck: 2000
+      },
+      {
+        id: 3,
+        firstName: 'Kiersten',
+        lastName: 'Moe', 
+        numOfDependants: 0,
+        payCheck: 2000
+      }
+    ]
+  }
+
+  //Use for calculations
+  selectEmployee = (id) => {
+    this.setState({ employees: this.state.employees.map(employee => {
+      if(employee.id === id){
+        console.log("Id " + {id} + " selected")
+        //set values equal to the returned values
+      }
+      return employee
+    })
+    });
+  }
+
+  deleteEmployee = (id) => {
+    
+  }
+
+  render()
+  {
+    console.log(this.state.employees);
+    return (
+      <div className="App">
+        <Employees 
+          employees = {this.state.employees}
+          selectEmployee = {this.selectEmployee}
+          deleteEmployee = {this.deleteEmployee}
+        />
+      </div>
+    );
+  }  
 }
 
 export default App;

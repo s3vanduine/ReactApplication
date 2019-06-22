@@ -7,27 +7,27 @@ import uuid from 'uuid';
 class App extends React.Component {
   state = {
     employees: [
-      {
-        id: uuid.v4(),
-        firstName: 'Sarah',
-        lastName: 'VanDuine', 
-        numOfDependants: 2,
-        payCheck: 2000
-      },
-      {
-        id: uuid.v4(),
-        firstName: 'James',
-        lastName: 'Jamison', 
-        numOfDependants: 4,
-        payCheck: 2000
-      },
-      {
-        id: uuid.v4(),
-        firstName: 'Indiana',
-        lastName: 'Jones', 
-        numOfDependants: 0,
-        payCheck: 2000
-      }
+      // {
+      //   id: uuid.v4(),
+      //   firstName: 'Sarah',
+      //   lastName: 'VanDuine', 
+      //   numOfDependants: 2,
+      //   payCheck: 2000
+      // },
+      // {
+      //   id: uuid.v4(),
+      //   firstName: 'James',
+      //   lastName: 'Jamison', 
+      //   numOfDependants: 4,
+      //   payCheck: 2000
+      // },
+      // {
+      //   id: uuid.v4(),
+      //   firstName: 'Indiana',
+      //   lastName: 'Jones', 
+      //   numOfDependants: 0,
+      //   payCheck: 2000
+      // }
     ]
   }
 
@@ -36,7 +36,6 @@ class App extends React.Component {
     this.setState({ employees: this.state.employees.map(employee => {
       if(employee.id === id){
         console.log("Id " + {id} + " selected")
-        //set values equal to the returned values
       }
       return employee
     })
@@ -47,16 +46,52 @@ class App extends React.Component {
     this.setState({ employees: [...this.state.employees.filter(employee => employee.id !== id)]})
   }
 
-  addEmployee = (firstName, lastName, numOfDependants) => {
+  addEmployee = (firstName, lastName, numOfDependants, numOfDependantsWithANames) => {
+
+    var discount = this.calculate(firstName, numOfDependantsWithANames);
+    //const paycheck = 2000;
+    const paycheckPerYear = 26;
+    const costOfDependant = 500;
+    const costOfEmployee = 1000;
+    const standardCost = numOfDependants*costOfDependant + costOfEmployee;
+    const postDiscount = standardCost - discount;
+    const costOfBenefitsPerPaycheck = (postDiscount/paycheckPerYear).toFixed(2);
+
     const newEmployee = {
       id: uuid.v4(),
       firstName,
       lastName,
-      numOfDependants
+      numOfDependants,
+      standardCost,
+      discount,
+      postDiscount,
+      costOfBenefitsPerPaycheck
     }
     this.setState({
       employees: [...this.state.employees, newEmployee]
     })
+  }
+
+  calculate = (firstName, numOfDependantsWithANames) => {
+    console.log("Calculating discount for " + firstName)
+    const costOfBeneifitsPerEmployeePerYear = 1000;
+    const costOfBenefitsPerDepedantPerYear = 500;
+    const discountPercentage = .1;
+    const discountLetter = 'A';
+  
+    var discount = 0;
+    if(firstName.toString().substring(0, 1).toUpperCase() === discountLetter){
+      discount += costOfBeneifitsPerEmployeePerYear * discountPercentage;
+    }
+    for(var i = 0; i < numOfDependantsWithANames; i++){
+      discount += costOfBenefitsPerDepedantPerYear * discountPercentage
+    }
+    // dependantNames.forEach(element => {
+    //   if(element.substring(0,1) === discountLetter){  
+    //      discount += costOfBenefitsPerDepedantPerYear * discountPercentage;
+    //   }
+    // })
+    return discount;
   }
 
   render()

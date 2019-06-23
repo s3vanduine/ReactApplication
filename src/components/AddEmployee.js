@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+//import Dependants from './Dependants'
 
 class AddEmployee extends React.Component { 
     state = {
@@ -8,6 +9,7 @@ class AddEmployee extends React.Component {
             lastName: "",
             numOfDependants: 0,
             numOfDependantsWithANames: 0
+            //dependantNames: []
         //}
     }
 
@@ -20,20 +22,21 @@ class AddEmployee extends React.Component {
         this.props.addEmployee(this.state.firstName, this.state.lastName, this.state.numOfDependants, this.state.numOfDependantsWithANames);
     }
 
-    //get this working
-    createSelectList = () => {
-        let selectOptions = [];
-        for(var i = 0; i <= 15; i++){
-            selectOptions.push(<option value={i}>{i}</option>) 
-        }
-        return {
-          selectOptions
-        }
-      }
+    addDependant = (name) => this.setState({
+        dependantNames: [...this.state.depedantNames, name]
+    })
 
     render()
     {
-    return(
+        let selectOptions = [];
+        for(var i = 0; i <= 15; i++){
+            selectOptions.push(<option key={i} value={i}>{i}</option>) 
+        }
+        let selectANamesOptions = [];
+        for(var j = 0; j <= this.state.numOfDependants; j++){
+            selectANamesOptions.push(<option key={j} value={j}>{j}</option>)
+        }
+        return(
         <form onSubmit={this.onSubmit}>
             <label> Employee First Name: 
                  <input type="text" name="firstName" placeholder="Employee First Name" onChange={this.onChange}/>
@@ -43,20 +46,21 @@ class AddEmployee extends React.Component {
             </label>
             <label className="dropdown">Number of Dependants
                 <select name="numOfDependants" className="dropdown-content" defaultValue="0" onChange={this.onChange}>                
-                    {/*this.createSelectList()*/}
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
+                    {selectOptions}                
                 </select>
-            </label>
+            </label><br/>
             <label className="dropdown">Number of dependants whose first name begins with 'A'
                 <select name="numOfDependantsWithANames" className="dropdown-content" defaultValue="0" onChange={this.onChange}>
-                    {/*this.createSelectList()*/}
-                    <option value="0">0</option>
+                    {selectANamesOptions}
+                    {/* <option value="0">0</option>
                     <option value="1">1</option>
-                    <option value="2">2</option>
+                    <option value="2">2</option> */}
                 </select>
             </label>
+            {/* <Dependants
+                numOfDependants = {this.numOfDependants}
+                addDependant = {this.addDependant}
+            /> */}
             <input type="submit" value="submit"/>
         </form>
     ) 

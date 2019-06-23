@@ -16,6 +16,10 @@ class AddEmployee extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.props.addEmployee(this.state.firstName, this.state.lastName, this.state.numOfDependants, this.state.numOfDependantsWithANames);
+        e.target.firstName.value = "";
+        e.target.lastName.value = "";
+        e.target.numOfDependants.value = 0;
+        e.target.numOfDependantsWithANames.value = 0;
     }
 
     addDependant = (name) => this.setState({

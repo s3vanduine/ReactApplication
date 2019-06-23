@@ -6,29 +6,7 @@ import uuid from 'uuid';
 
 class App extends React.Component {
   state = {
-    employees: [
-      // {
-      //   id: uuid.v4(),
-      //   firstName: 'Sarah',
-      //   lastName: 'VanDuine', 
-      //   numOfDependants: 2,
-      //   payCheck: 2000
-      // },
-      // {
-      //   id: uuid.v4(),
-      //   firstName: 'James',
-      //   lastName: 'Jamison', 
-      //   numOfDependants: 4,
-      //   payCheck: 2000
-      // },
-      // {
-      //   id: uuid.v4(),
-      //   firstName: 'Indiana',
-      //   lastName: 'Jones', 
-      //   numOfDependants: 0,
-      //   payCheck: 2000
-      // }
-    ]
+    employees: []
   }
 
   //Use for calculations
@@ -83,18 +61,11 @@ class App extends React.Component {
     if(firstName.toString().substring(0, 1).toUpperCase() === discountLetter){
       discount += costOfBeneifitsPerEmployeePerYear * discountPercentage;
     }
-    console.log(numOfDependantsWithANames);
-    
     if(numOfDependants > 0){
       for(var i = 0; i < numOfDependantsWithANames; i++){
         discount += costOfBenefitsPerDepedantPerYear * discountPercentage
       }
     }
-    // dependantNames.forEach(element => {
-    //   if(element.substring(0,1) === discountLetter){  
-    //      discount += costOfBenefitsPerDepedantPerYear * discountPercentage;
-    //   }
-    // })
     return discount;
   }
 

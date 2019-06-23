@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import Dependants from './Dependants'
 
 class AddEmployee extends React.Component { 
     state = {
-        //employee: {
-            firstName: "",
-            lastName: "",
-            numOfDependants: 0,
-            numOfDependantsWithANames: 0
-            //dependantNames: []
-        //}
+        firstName: "",
+        lastName: "",
+        numOfDependants: 0,
+        numOfDependantsWithANames: 0
     }
 
     onChange = (e) => this.setState({
@@ -44,24 +40,17 @@ class AddEmployee extends React.Component {
             <label> Employee Last Name: 
                 <input type="text" name="lastName" placeholder="Employee Last Name" onChange={this.onChange}/>
             </label>
-            <label className="dropdown">Number of Dependants
+            <label className="dropdown">Number of Dependants:
                 <select name="numOfDependants" className="dropdown-content" defaultValue="0" onChange={this.onChange}>                
                     {selectOptions}                
                 </select>
             </label><br/>
-            <label className="dropdown">Number of dependants whose first name begins with 'A'
+            <label className="dropdown">Number of Dependants Whose <b>First</b> Name Begins with <b>'A'</b>:
                 <select name="numOfDependantsWithANames" className="dropdown-content" defaultValue="0" onChange={this.onChange}>
                     {selectANamesOptions}
-                    {/* <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option> */}
                 </select>
             </label>
-            {/* <Dependants
-                numOfDependants = {this.numOfDependants}
-                addDependant = {this.addDependant}
-            /> */}
-            <input type="submit" value="submit"/>
+            <input className="submit" type="submit" value="Submit"/>
         </form>
     ) 
     }  

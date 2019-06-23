@@ -48,7 +48,7 @@ class App extends React.Component {
 
   addEmployee = (firstName, lastName, numOfDependants, numOfDependantsWithANames) => {
 
-    var discount = this.calculate(firstName, numOfDependantsWithANames);
+    var discount = this.calculate(firstName, numOfDependants, numOfDependantsWithANames);
     //const paycheck = 2000;
     const paycheckPerYear = 26;
     const costOfDependant = 500;
@@ -72,7 +72,7 @@ class App extends React.Component {
     })
   }
 
-  calculate = (firstName, numOfDependantsWithANames) => {
+  calculate = (firstName, numOfDependants, numOfDependantsWithANames) => {
     console.log("Calculating discount for " + firstName)
     const costOfBeneifitsPerEmployeePerYear = 1000;
     const costOfBenefitsPerDepedantPerYear = 500;
@@ -83,8 +83,12 @@ class App extends React.Component {
     if(firstName.toString().substring(0, 1).toUpperCase() === discountLetter){
       discount += costOfBeneifitsPerEmployeePerYear * discountPercentage;
     }
-    for(var i = 0; i < numOfDependantsWithANames; i++){
-      discount += costOfBenefitsPerDepedantPerYear * discountPercentage
+    console.log(numOfDependantsWithANames);
+    
+    if(numOfDependants > 0){
+      for(var i = 0; i < numOfDependantsWithANames; i++){
+        discount += costOfBenefitsPerDepedantPerYear * discountPercentage
+      }
     }
     // dependantNames.forEach(element => {
     //   if(element.substring(0,1) === discountLetter){  

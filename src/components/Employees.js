@@ -4,19 +4,28 @@ import PropTypes from 'prop-types';
 
 class Employees extends React.Component {
 
+  calculateTotal = (employees) => {
+    var totalPaychecks = 0 
+    employees.forEach(employee => {
+       totalPaychecks += employee.paycheckWithBenefits;
+    })
+    return totalPaychecks;
+  }
+
   render()
   {
     return (
       <table>
         <tbody>
         <tr key="Headers">
-          <th></th>
+          {/* <th></th> */}
           <th>Employee</th>
           <th>Dependants</th>
           <th>Standard Cost per Year</th>
           <th>Discount</th>
           <th>Stardard Cost per Year Post Discount</th>
           <th>Cost of Benefits per Paycheck</th>
+          <th>Paycheck</th>
           <th></th>
         </tr>
         {
@@ -28,6 +37,16 @@ class Employees extends React.Component {
             />
           ))
         }
+        <tr className="total">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Total: {this.calculateTotal(this.props.employees)}</td>
+        </tr>
         </tbody>
       </table>
       
@@ -37,7 +56,9 @@ class Employees extends React.Component {
 
 //PropTypes
 Employees.propTypes = {
-  employees: PropTypes.array.isRequired
+  employees: PropTypes.array.isRequired,
+  selectEmployee: PropTypes.func.isRequired,
+  deleteEmployee: PropTypes.func.isRequired
 }
  
 export default Employees;

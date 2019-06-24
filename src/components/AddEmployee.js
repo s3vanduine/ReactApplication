@@ -20,6 +20,12 @@ class AddEmployee extends React.Component {
         e.target.lastName.value = "";
         e.target.numOfDependants.value = 0;
         e.target.numOfDependantsWithANames.value = 0;
+        this.setState({
+            firstName: "",
+            lastName: "",
+            numOfDependants: 0,
+            numOfDependantsWithANames: 0
+        })
     }
 
     addDependant = (name) => this.setState({
@@ -37,7 +43,7 @@ class AddEmployee extends React.Component {
             selectANamesOptions.push(<option key={j} value={j}>{j}</option>)
         }
         return(
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} class="form-style-5">
             <label> Employee First Name: 
                  <input type="text" name="firstName" placeholder="Employee First Name" onChange={this.onChange}/>
             </label>
@@ -48,7 +54,7 @@ class AddEmployee extends React.Component {
                 <select name="numOfDependants" className="dropdown-content" defaultValue="0" onChange={this.onChange}>                
                     {selectOptions}                
                 </select>
-            </label><br/>
+            </label>
             <label className="dropdown">Number of Dependants Whose <b>First</b> Name Begins with <b>'A'</b>:
                 <select name="numOfDependantsWithANames" className="dropdown-content" defaultValue="0" onChange={this.onChange}>
                     {selectANamesOptions}

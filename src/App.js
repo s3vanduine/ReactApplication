@@ -9,7 +9,6 @@ class App extends React.Component {
     employees: []
   }
 
-  //Use for calculations
   selectEmployee = (id) => {
     this.setState({ employees: this.state.employees.map(employee => {
       if(employee.id === id){
@@ -27,13 +26,14 @@ class App extends React.Component {
   addEmployee = (firstName, lastName, numOfDependants, numOfDependantsWithANames) => {
 
     var discount = this.calculate(firstName, numOfDependants, numOfDependantsWithANames);
-    //const paycheck = 2000;
+    const paycheck = 2000;
     const paycheckPerYear = 26;
     const costOfDependant = 500;
     const costOfEmployee = 1000;
     const standardCost = numOfDependants*costOfDependant + costOfEmployee;
     const postDiscount = standardCost - discount;
     const costOfBenefitsPerPaycheck = (postDiscount/paycheckPerYear).toFixed(2);
+    const paycheckWithBenefits = paycheck - costOfBenefitsPerPaycheck;
 
     const newEmployee = {
       id: uuid.v4(),
@@ -43,7 +43,8 @@ class App extends React.Component {
       standardCost,
       discount,
       postDiscount,
-      costOfBenefitsPerPaycheck
+      costOfBenefitsPerPaycheck,
+      paycheckWithBenefits
     }
     this.setState({
       employees: [...this.state.employees, newEmployee]

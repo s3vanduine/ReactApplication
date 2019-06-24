@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 class Employees extends React.Component {
 
   calculateTotal = (employees) => {
-    var totalPaychecks = 0 
+    var total = 0 
     employees.forEach(employee => {
-       totalPaychecks += employee.paycheckWithBenefits;
+       total += Number(employee.costOfBenefitsPerPaycheck);
     })
-    return totalPaychecks;
+    return total.toFixed(2);
   }
 
   render()
@@ -44,8 +44,8 @@ class Employees extends React.Component {
           <td></td>
           <td></td>
           <td></td>
-          <td></td>
-          <td>Total: {this.calculateTotal(this.props.employees)}</td>
+          <td>Total Cost of Benefits per Pay Period</td>
+          <td>{this.calculateTotal(this.props.employees)}</td>
         </tr>
         </tbody>
       </table>

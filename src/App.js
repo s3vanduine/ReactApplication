@@ -6,7 +6,8 @@ import uuid from 'uuid';
 
 class App extends React.Component {
   state = {
-    employees: []
+    employees: [],
+    discountLetter: 'A'
   }
 
   selectEmployee = (id) => {
@@ -56,7 +57,7 @@ class App extends React.Component {
     const costOfBeneifitsPerEmployeePerYear = 1000;
     const costOfBenefitsPerDepedantPerYear = 500;
     const discountPercentage = .1;
-    const discountLetter = 'A';
+    const discountLetter = this.state.discountLetter;
   
     var discount = 0;
     if(firstName.toString().substring(0, 1).toUpperCase() === discountLetter){
@@ -79,6 +80,7 @@ class App extends React.Component {
           <Header />
           <AddEmployee 
             addEmployee = {this.addEmployee}
+            discountLetter = {this.state.discountLetter}
           />
           <Employees 
             employees = {this.state.employees}

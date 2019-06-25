@@ -45,17 +45,17 @@ class AddEmployee extends React.Component {
         return(
         <form onSubmit={this.onSubmit} class="form-style-5">
             <label> Employee First Name: 
-                 <input type="text" name="firstName" placeholder="Employee First Name" onChange={this.onChange}/>
+                 <input type="text" name="firstName" maxlength="30" placeholder="Employee First Name" onChange={this.onChange}/>
             </label>
             <label> Employee Last Name: 
-                <input type="text" name="lastName" placeholder="Employee Last Name" onChange={this.onChange}/>
+                <input type="text" name="lastName" maxlength="30" placeholder="Employee Last Name" onChange={this.onChange}/>
             </label>
             <label className="dropdown">Number of Dependants:
                 <select name="numOfDependants" className="dropdown-content" defaultValue="0" onChange={this.onChange}>                
                     {selectOptions}                
                 </select>
             </label>
-            <label className="dropdown">Number of Dependants Whose <b>First</b> Name Begins with <b>'A'</b>:
+            <label className="dropdown">Number of Dependants Whose <b>First</b> Name Begins with <b>'{this.props.discountLetter}'</b>:
                 <select name="numOfDependantsWithANames" className="dropdown-content" defaultValue="0" onChange={this.onChange}>
                     {selectANamesOptions}
                 </select>
@@ -68,7 +68,8 @@ class AddEmployee extends React.Component {
 
 //PropTypes
 AddEmployee.propTypes = {
-    addEmployee: PropTypes.func.isRequired
-  }
+    addEmployee: PropTypes.func.isRequired,
+    discountLetter: PropTypes.string.isRequired
+}
 
 export default AddEmployee;

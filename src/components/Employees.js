@@ -18,7 +18,6 @@ class Employees extends React.Component {
       <table>
         <tbody>
         <tr key="Headers">
-          {/* <th></th> */}
           <th>Employee</th>
           <th>Dependants</th>
           <th>Standard Cost per Year</th>

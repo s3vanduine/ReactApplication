@@ -43,12 +43,12 @@ class AddEmployee extends React.Component {
             selectANamesOptions.push(<option key={j} value={j}>{j}</option>)
         }
         return(
-        <form onSubmit={this.onSubmit} class="form-style-5">
+        <form onSubmit={this.onSubmit} className="form-style-5">
             <label> Employee First Name: 
-                 <input type="text" name="firstName" maxlength="30" placeholder="Employee First Name" onChange={this.onChange}/>
+                 <input type="text" name="firstName" maxLength="30" placeholder="Employee First Name" onChange={this.onChange}/>
             </label>
             <label> Employee Last Name: 
-                <input type="text" name="lastName" maxlength="30" placeholder="Employee Last Name" onChange={this.onChange}/>
+                <input type="text" name="lastName" maxLength="30" placeholder="Employee Last Name" onChange={this.onChange}/>
             </label>
             <label className="dropdown">Number of Dependants:
                 <select name="numOfDependants" className="dropdown-content" defaultValue="0" onChange={this.onChange}>                
